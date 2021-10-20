@@ -23,20 +23,21 @@
  */
 
 
-#include <apr_encode.h>
-#include <apr_escape.h>
-#include <apr_hash.h>
+//#include <apr_encode.h>
+//#include <apr_escape.h>
+//#include <apr_hash.h>
 #include <apr_lib.h>
 #include <apr_strings.h>
 
 #include "mod_multipart.h"
-//#include "http_config.h"
+#include "http_config.h"
 //#include "http_core.h"
-#include "http_log.h"
-#include "http_protocol.h"
+//#include "http_log.h"
+//#include "http_protocol.h"
 #include "http_request.h"
-#include "util_script.h"
-#include "ap_expr.h"
+//#include "util_script.h"
+//#include "ap_expr.h"
+#include "util_filter.h"
 
 module AP_MODULE_DECLARE_DATA multipart_module;
 
