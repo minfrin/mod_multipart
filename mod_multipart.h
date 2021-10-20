@@ -36,11 +36,11 @@
 
 
 #include <apr_buckets.h>
-#include <apr_encode.h>
-#include <apr_escape.h>
-#include <apr_hash.h>
-#include <apr_lib.h>
-#include <apr_strings.h>
+//#include <apr_encode.h>
+//#include <apr_escape.h>
+//#include <apr_hash.h>
+//#include <apr_lib.h>
+//#include <apr_strings.h>
 
 #include "httpd.h"
 //#include "http_config.h"
