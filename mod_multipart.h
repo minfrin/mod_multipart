@@ -137,8 +137,17 @@ AP_DECLARE(apr_bucket*)
 ap_bucket_multipart_create(apr_bucket_alloc_t *list, multipart_t *multipart,
         part_t *part);
 
-/** @see apr_bucket_pool */
-typedef struct ap_bucket_multipart ap_bucket_multipart;
+/**
+ * A bucket referring to the start of a multipart part.
+ */
+typedef struct ap_bucket_multipart {
+    /** Number of buckets using this memory */
+    apr_bucket_refcount  refcount;
+    /** The content of the multipart */
+    multipart_t *multipart;
+    /** The content of the part */
+    part_t *part;
+} ap_bucket_multipart;
 
 
 #ifdef __cplusplus
