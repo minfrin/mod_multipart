@@ -41,6 +41,6 @@ make %{?_smp_mflags}
 %doc AUTHORS ChangeLog README.md
 
 %changelog
-* Tue Jun 30 2021 Graham Leggett <minfrin@sharp.fm> - 1.0.0-1
+* Wed Oct 20 2021 Graham Leggett <minfrin@sharp.fm> - 2.4.0-1
 - Initial version of the package
 
