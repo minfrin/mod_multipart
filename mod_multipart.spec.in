@@ -18,7 +18,7 @@ can parse and interpret multipart MIME content.
 %package devel
 Group: Development/Libraries
 Summary: Development tools for the mod_multipart filters.
-Requires: httpd-devel
+Requires: (httpd-devel or apache-devel or apache2-devel)
 
 %description devel
 Header file for the mod_multipart filters implementing multipart MIME parsing.
