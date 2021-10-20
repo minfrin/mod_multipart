@@ -33,14 +33,14 @@ make %{?_smp_mflags}
 %make_install
 
 %files
-%if 0%{?sle_version}
+%if 0%{?sle_version} || 0%{?is_opensuse}
 %{_libdir}/apache2/mod_multipart.so
 %else
 %{_libdir}/httpd/modules/mod_multipart.so
 %endif
 
 %files devel
-%if 0%{?sle_version}
+%if 0%{?sle_version} || 0%{?is_opensuse}
 %{_includedir}/apache2/mod_multipart.h
 %else
 %{_includedir}/httpd/mod_multipart.h
