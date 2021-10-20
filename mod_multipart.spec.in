@@ -40,7 +40,11 @@ make %{?_smp_mflags}
 %endif
 
 %files devel
+%if 0%{?is_opensuse}
+%{_includedir}/apache2/mod_multipart.h
+%else
 %{_includedir}/httpd/mod_multipart.h
+%endif
 
 %doc AUTHORS ChangeLog README.md
 
