@@ -8,17 +8,17 @@ License:   ASL 2.0
 Group:     System Environment/Daemons
 Source:    https://github.com/minfrin/%{name}/releases/download/%{name}-%{version}/%{name}-%{version}.tar.bz2
 Url:       https://github.com/minfrin/%{name}
-BuildRequires: gcc, pkgconfig(apr-1), pkgconfig(apr-util-1)
-Requires: httpd
-%if 0%{?is_opensuse}
-BuildRequires: apache2-devel
-%else
-%if 0%{?mgaversion}
-BuildRequires: apache-devel
-%else
-BuildRequires: httpd-devel
-%endif
-%endif
+BuildRequires: gcc, pkgconfig(apr-1), pkgconfig(apr-util-1), (httpd-devel or apache-devel or apache2-devel)
+Requires: (httpd or apache or apache2)
+#%if 0%{?is_opensuse}
+#BuildRequires: apache2-devel
+#%else
+#%if 0%{?mgaversion}
+#BuildRequires: apache-devel
+#%else
+#BuildRequires: httpd-devel
+#%endif
+#%endif
 
 %description
 The Apache mod_multipart module provides a set of filters that
