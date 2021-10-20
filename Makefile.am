@@ -9,5 +9,7 @@ all-local:
 
 install-exec-local: 
 	mkdir -p $(DESTDIR)`$(APXS) -q LIBEXECDIR`
+	mkdir -p $(DESTDIR)`$(APXS) -q includedir`
+	$(INSTALL) mod_multipart.h $(DESTDIR)`$(APXS) -q includedir`
 	$(APXS) -S LIBEXECDIR=$(DESTDIR)`$(APXS) -q LIBEXECDIR` -c -i $(DEF_LDLIBS) -Wc,"$(CFLAGS)" -Wc,"$(AM_CFLAGS)" -Wl,"$(LDFLAGS)" -Wl,"$(AM_LDFLAGS)" $(LIBS) @srcdir@/mod_multipart.c
 
