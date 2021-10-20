@@ -613,18 +613,6 @@ static void multipart_unref(multipart_t *mp)
     }
 }
 
-/**
- * A bucket referring to the start of a multipart part.
- */
-struct ap_bucket_multipart {
-    /** Number of buckets using this memory */
-    apr_bucket_refcount  refcount;
-    /** The content of the multipart */
-    multipart_t *multipart;
-    /** The content of the part */
-    part_t *part;
-};
-
 AP_DECLARE(apr_bucket *) ap_bucket_multipart_make(apr_bucket *b,
         multipart_t *multipart, part_t *part)
 {
