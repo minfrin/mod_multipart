@@ -1,0 +1,46 @@
+# RPM Spec file for mod_multipart
+
+Name:      mod_multipart
+Version:   @PACKAGE_VERSION@
+Release:   1%{?dist}
+Summary:   Apache httpd multipart module
+License:   ASL 2.0
+Group:     System Environment/Daemons
+Source:    https://github.com/minfrin/%{name}/releases/download/%{name}-%{version}/%{name}-%{version}.tar.bz2
+Url:       https://github.com/minfrin/%{name}
+BuildRequires: gcc, pkgconfig(apr-1), pkgconfig(apr-util-1), httpd-devel
+Requires: httpd
+
+%description
+The Apache mod_multipart module provides a set of filters that
+can parse and interpret multipart MIME content.
+
+%package devel
+Group: Development/Libraries
+Summary: Development tools for the mod_multipart filters.
+Requires: httpd-devel
+
+%description devel
+Header file for the mod_multipart filters implementing multipart MIME parsing.
+
+%prep
+%setup -q
+%build
+%configure
+make %{?_smp_mflags}
+
+%install
+%make_install
+
+%files
+%{_libdir}/httpd/modules/mod_multipart.so
+
+%files devel
+%{_includedir}/httpd/mod_multipart.h
+
+%doc AUTHORS ChangeLog README.md
+
+%changelog
+* Tue Jun 30 2021 Graham Leggett <minfrin@sharp.fm> - 1.0.0-1
+- Initial version of the package
+
