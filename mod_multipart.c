@@ -178,6 +178,7 @@ apr_status_t apr_brigade_split_boundary(apr_bucket_brigade *bbOut,
                         apr_bucket_split(e, off);
                         APR_BUCKET_REMOVE(e);
                         APR_BRIGADE_INSERT_TAIL(bbOut, e);
+                        ignore = 0;
 
                         e = APR_BRIGADE_FIRST(bbIn);
                     }
@@ -193,6 +194,7 @@ apr_status_t apr_brigade_split_boundary(apr_bucket_brigade *bbOut,
 
             APR_BUCKET_REMOVE(e);
             APR_BRIGADE_INSERT_TAIL(bbOut, e);
+            ignore = 0;
 
             outbytes += len;
 
@@ -221,6 +223,7 @@ apr_status_t apr_brigade_split_boundary(apr_bucket_brigade *bbOut,
                         apr_bucket_split(e, off);
                         APR_BUCKET_REMOVE(e);
                         APR_BRIGADE_INSERT_TAIL(bbOut, e);
+                        ignore = 0;
 
                         outbytes += off;
 
@@ -237,6 +240,7 @@ apr_status_t apr_brigade_split_boundary(apr_bucket_brigade *bbOut,
 
             APR_BUCKET_REMOVE(e);
             APR_BRIGADE_INSERT_TAIL(bbOut, e);
+            ignore = 0;
 
             outbytes += off;
 
