@@ -834,20 +834,6 @@ static apr_status_t multipart_in_filter(ap_filter_t *f,
         }
 
         /* multipart only, and with a boundary */
-#if 0
-        if (ct
-                && (sscanf(ct,
-                        "multipart/%250[a-z-]; boundary=\"%70[0-9a-zA-Z'()+_,./:=? -]\"",
-                        subtype, boundary + 4) == 2
-                        || sscanf(ct,
-                                "multipart/%250[a-z-]; boundary=%70[0-9a-zA-Z'()+_,./:=?-]",
-                                subtype, boundary + 4) == 2)) {
-            /* ok */
-        } else {
-            goto bypass;
-        }
-#endif
-
         type = ap_header_parse(r->pool, ct, "boundary",
                 &boundary, NULL);
 
@@ -859,7 +845,7 @@ static apr_status_t multipart_in_filter(ap_filter_t *f,
             ap_log_rerror(APLOG_MARK, APLOG_ERR, APR_SUCCESS, r,
                     "multipart: content type '%s' has no boundary, bad request.", type);
 
-            apr_table_setn(h->r->notes, "verbose-error-to", "*");
+            apr_table_setn(r->notes, "verbose-error-to", "*");
 
             apr_table_set(r->notes, "error-notes",
                     apr_psprintf(r->pool,
