@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.71])
-AC_INIT([mod_multipart],[2.4.0],[minfrin@sharp.fm])
+AC_INIT([mod_multipart],[2.4.1],[minfrin@sharp.fm])
 AM_INIT_AUTOMAKE([dist-bzip2])
 AC_CONFIG_FILES([Makefile mod_multipart.spec])
 AC_CONFIG_SRCDIR([mod_multipart.c])
