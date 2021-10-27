@@ -29,7 +29,7 @@
  *
  * Still to be done:
  *
- * - Nested multipart support
+ * - Nested multipart support (MultipartDepth)
  * - Output filter
  */
 
