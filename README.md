@@ -10,3 +10,7 @@ that can be parsed for further processing by other handlers and filters.
 The MULTIPART bucket contains parsed metadata about the given content. The
 content of each part is passed as buckets between multipart buckets.
 
+## binaries
+RPMs for Fedora/Redhat derivatives are available through
+[COPR](https://copr.fedorainfracloud.org/coprs/minfrin/mod_multipart/).
+
