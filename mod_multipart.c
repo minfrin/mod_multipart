@@ -19,7 +19,18 @@
  * mod_multipart - Apache httpd multipart parser module
  *
  * The Apache mod_multipart module provides a set of filters that
- * can parse and interpret multipart MIME content.
+ * can parse and interpret multipart MIME content, such as
+ * multipart/form-data.
+ *
+ * Done:
+ *
+ * - Multipart parsing of multipart/[subtype] content types
+ * - Input filter
+ *
+ * Still to be done:
+ *
+ * - Nested multipart support
+ * - Output filter
  */
 
 
@@ -28,6 +39,7 @@
 
 #include "mod_multipart.h"
 #include "http_config.h"
+#include "http_log.h"
 #include "http_request.h"
 #include "util_filter.h"
 
@@ -813,8 +825,6 @@ static apr_status_t multipart_in_filter(ap_filter_t *f,
          * We allocate the carriage return, line feed, first two dash
          * characters, then 70 characters, then a trailing nul.
          */
-//        char subtype[256];
-//        char boundary[75] = CRLF "--";
 
         ct = apr_table_get(r->headers_in, "Content-Type");
 
@@ -841,13 +851,22 @@ static apr_status_t multipart_in_filter(ap_filter_t *f,
         type = ap_header_parse(r->pool, ct, "boundary",
                 &boundary, NULL);
 
-        if (!type || strcasecmp(type, "multipart/form-data")) {
+        if (!type || strncasecmp(type, "multipart/", 10)) {
             goto bypass;
         }
 
         if (!boundary || !boundary[0]) {
-// FIXME error
-            goto bypass;
+            ap_log_rerror(APLOG_MARK, APLOG_ERR, APR_SUCCESS, r,
+                    "multipart: content type '%s' has no boundary, bad request.", type);
+
+            apr_table_setn(h->r->notes, "verbose-error-to", "*");
+
+            apr_table_set(r->notes, "error-notes",
+                    apr_psprintf(r->pool,
+                            "multipart: content type '%s' has no boundary, bad request.",
+                            type));
+
+            return APR_EINVAL;
         }
 
         boundary =
