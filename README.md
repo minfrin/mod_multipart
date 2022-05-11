@@ -14,3 +14,5 @@ content of each part is passed as buckets between multipart buckets.
 RPMs for Fedora/Redhat derivatives are available through
 [COPR](https://copr.fedorainfracloud.org/coprs/minfrin/mod_multipart/).
 
+Ubuntu packages are available through
+[PPA](https://launchpad.net/~minfrin/+archive/ubuntu/apache2/).
